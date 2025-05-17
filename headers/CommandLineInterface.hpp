@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <optional>
 
 /*
 * Class that contains the functions to display
@@ -22,4 +23,7 @@ class CommandLineInterface {
 
     /* menus */
     void startMenu() const;
+
+    /* user input getters */
+    std::optional<int> getUserMenuSelection(int, int) const;
 };
