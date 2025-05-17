@@ -16,7 +16,7 @@ void CommandLineInterface::startMenu() const {
     std::cout << "3. Search for a book (TODO)\n";
     std::cout << "4. Borrow a book (TODO)\n";
     std::cout << "5. Return a book (TODO)\n";
-    std::cout << "6. Save library to file (TODO)\n";
+    std::cout << "6. Save library to file\n";
 
     std::cout << "0. Exit (TODO)\n\n";
 

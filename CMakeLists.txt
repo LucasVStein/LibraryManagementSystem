@@ -18,6 +18,7 @@ add_executable(library.exe
     src/Book.cpp
     src/Library.cpp
     src/CommandLineInterface.cpp
+    src/SystemController.cpp
 )
 
 # fetch external json library
