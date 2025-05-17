@@ -13,12 +13,20 @@ int main() {
     Library library;
 
     // data setup: if data exists -> load, if it does not exist -> continue with empty library
-    if(std::filesystem::is_regular_file(data_path)) library.load(data_path);
+    if(std::filesystem::is_regular_file(data_path)) {
+        try {
+            library.load(data_path);
+        }
+        catch(const std::exception& e) {
+            std::cout << "\033[1;31mERROR:\033[0m Failed to load data.\n";
+        }
+    }
     else std::cout << "\033[1;31mERROR:\033[0m Failed to load data.\n";
 
     // initiate UI
     int input;
     do {
+        std::cout << '\n';
         CommandLineInterface::getInstance().startMenu();
         auto res = CommandLineInterface::getInstance().getUserMenuSelection(0, 6);
 
@@ -35,7 +43,7 @@ int main() {
                 library.show();
                 CommandLineInterface::getInstance().lineBreak();
                 break;
-                
+
             case 3: // search for book
                 // todo
                 break;
@@ -49,7 +57,13 @@ int main() {
                 break;
 
             case 6: // save library
-                // todo
+                try {
+                    library.save(data_path);
+                    std::cout << "\n\033[1;32mSUCCESS:\033[0m Saved data successfully.\n";
+                }
+                catch(const std::exception& e) {
+                    std::cout << "\n\033[1;31mERROR:\033[0m Failed to save data.\n";
+                }
                 break;
             
             default:
