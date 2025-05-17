@@ -28,6 +28,7 @@ class Book {
     Book(std::string, std::string, unsigned int, bool = true);
 
     /* getters */
+    unsigned int getId() const;
     std::string getTitle() const;
     std::string getAuthor() const;
     unsigned int getYear() const;

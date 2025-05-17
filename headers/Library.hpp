@@ -25,6 +25,7 @@ class Library {
     void addBook(Book);
     void load(std::string);
     void save(const std::string&) const;
+    void changeBookAvailability(unsigned int, bool);
 
     void show() const;
 };

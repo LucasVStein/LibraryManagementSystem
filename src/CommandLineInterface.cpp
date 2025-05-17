@@ -14,8 +14,8 @@ void CommandLineInterface::startMenu() const {
     std::cout << "1. Add a new book\n";
     std::cout << "2. List all books\n";
     std::cout << "3. Search for a book (TODO)\n";
-    std::cout << "4. Borrow a book (TODO)\n";
-    std::cout << "5. Return a book (TODO)\n";
+    std::cout << "4. Borrow a book\n";
+    std::cout << "5. Return a book\n";
     std::cout << "6. Save library to file\n";
 
     std::cout << "0. Exit\n\n";
@@ -76,6 +76,16 @@ void CommandLineInterface::addBookMenu(unsigned int menuOption) const {
     default:
         break;
     }
+}
+
+void CommandLineInterface::borrowBook() const {
+    std::cout << "\033[1;32m======  Borrow Book  =======\033[0m\n\n";
+    std::cout << "Book id: ";
+}
+
+void CommandLineInterface::returnBook() const {
+    std::cout << "\033[1;32m======  Return Book  =======\033[0m\n\n";
+    std::cout << "Book id: ";
 }
 
 std::optional<int> CommandLineInterface::getUserMenuSelection(int minValue, int maxValue) const

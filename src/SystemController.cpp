@@ -42,11 +42,11 @@ void SystemController::mainLoop() {
                 break;
 
             case 4: // borrow book
-                // todo
+                borrowBook();
                 break;
 
             case 5: // return book
-                // todo
+                returnBook();
                 break;
 
             case 6: // save library
@@ -139,4 +139,30 @@ void SystemController::addBook() {
         library.addBook({title.value(), author.value(), year.value()});
         std::cout << "\n\033[1;32mSUCCESS:\033[0m Book added to library.\n";
     }
+}
+
+void SystemController::borrowBook() {
+    std::cout << '\n';
+    CommandLineInterface::getInstance().borrowBook();
+    auto id = CommandLineInterface::getInstance().getIntInput();
+    while(!id.has_value()) {
+        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input, please try again.\n";
+        std::cout << "Book id: ";
+        id = CommandLineInterface::getInstance().getIntInput();
+    }
+    library.changeBookAvailability(id.value(), false);
+    std::cout << "\n\033[1;32mSUCCESS:\033[0m Book " + std::to_string(id.value()) + " is now unavailable.\n";
+}
+
+void SystemController::returnBook() {
+    std::cout << '\n';
+    CommandLineInterface::getInstance().returnBook();
+    auto id = CommandLineInterface::getInstance().getIntInput();
+    while(!id.has_value()) {
+        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input, please try again.\n";
+        std::cout << "Book id: ";
+        id = CommandLineInterface::getInstance().getIntInput();
+    }
+    library.changeBookAvailability(id.value(), true);
+    std::cout << "\n\033[1;32mSUCCESS:\033[0m Book " + std::to_string(id.value()) + " is now available.\n";
 }

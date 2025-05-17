@@ -13,7 +13,12 @@ Book::Book(std::string newTitle, std::string newAuthor, unsigned int newYear, bo
       year(newYear),
       isAvailable(newIsAvailable) {}
 
-std::string Book::getTitle() const {
+unsigned int Book::getId() const {
+    return id;
+}
+
+std::string Book::getTitle() const
+{
     return title;
 }
 

@@ -40,6 +40,15 @@ void Library::save(const std::string& path) const {
     }
 }
 
+void Library::changeBookAvailability(unsigned int id, bool newIsAvailable) {
+    for(auto& book : books) {
+        if(book.getId() == id) {
+            book.setIsAvailable(newIsAvailable);
+            break;
+        }
+    }
+}
+
 void Library::show() const {
     if(books.empty()) std::cout << "Empty\n";
     for(const Book& b : books) {

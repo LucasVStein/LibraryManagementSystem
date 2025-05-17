@@ -1,13 +1,13 @@
 [
     {
         "author": "George Orwell",
-        "available": true,
+        "available": false,
         "title": "1984",
         "year": 1949
     },
     {
         "author": "Andrew Hunt and David Thomas",
-        "available": false,
+        "available": true,
         "title": "The Pragmatic Programmer",
         "year": 1999
     }
