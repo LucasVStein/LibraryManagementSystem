@@ -13,15 +13,18 @@
 *  -  (bool) isAvailable: if the book is available or not (borrowed).
 */
 class Book {
+    unsigned int id;
     std::string title;
     std::string author;
     unsigned int year;
     bool isAvailable;
 
+    static unsigned int nextId;
+
     public:
 
     /* ctors */
-    Book() = default;
+    Book();
     Book(std::string, std::string, unsigned int, bool = true);
 
     /* getters */

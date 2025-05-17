@@ -2,11 +2,16 @@
 
 using json = nlohmann::json;
 
+unsigned int Book::nextId = 1;
+
+Book::Book(): id(nextId++) {}
+
 Book::Book(std::string newTitle, std::string newAuthor, unsigned int newYear, bool newIsAvailable)
-: title(newTitle),
-  author(newAuthor),
-  year(newYear),
-  isAvailable(newIsAvailable) {}
+    : id(nextId++),
+      title(newTitle),
+      author(newAuthor),
+      year(newYear),
+      isAvailable(newIsAvailable) {}
 
 std::string Book::getTitle() const {
     return title;
@@ -42,7 +47,7 @@ void Book::setIsAvailable(bool newIsAvailable) {
 
 void Book::show() const {
     std::string isAvailableStr = isAvailable ? "Yes" : "No";
-    std::cout << "Title: " + title + ", Author: " + author + ", Year: " + std::to_string(year) + ", Availability: " + isAvailableStr + '\n';
+    std::cout << "(id:" + std::to_string(id) + ") Title: " + title + ", Author: " + author + ", Year: " + std::to_string(year) + ", Availability: " + isAvailableStr + '\n';
 }
 
 void to_json(nlohmann::json& j, const Book& b) {

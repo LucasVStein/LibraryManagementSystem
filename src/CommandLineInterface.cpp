@@ -7,21 +7,28 @@ CommandLineInterface &CommandLineInterface::getInstance()
 }
 
 void CommandLineInterface::startMenu() const {
-    std::cout << "==============================\n";
+    std::cout << "\033[1;32m==============================\n";
     std::cout << "  Library Management System\n";
-    std::cout << "==============================\n\n";
+    std::cout << "==============================\033[0m\n\n";
 
     std::cout << "1. Add a new book (TODO)\n";
-    std::cout << "2. List all books (TODO)\n";
+    std::cout << "2. List all books\n";
     std::cout << "3. Search for a book (TODO)\n";
     std::cout << "4. Borrow a book (TODO)\n";
     std::cout << "5. Return a book (TODO)\n";
     std::cout << "6. Save library to file (TODO)\n";
-    std::cout << "7. Load library from file (TODO)\n\n";
 
     std::cout << "0. Exit (TODO)\n\n";
 
-    std::cout << "Choose an option: ";
+    std::cout << "\033[1;32mChoose an option: \033[0m";
+}
+
+void CommandLineInterface::listBooks() const {
+    std::cout << "\033[1;32m======  List of Books  =======\033[0m\n";
+}
+
+void CommandLineInterface::lineBreak() const {
+    std::cout << "\033[1;32m==============================\033[0m\n";
 }
 
 std::optional<int> CommandLineInterface::getUserMenuSelection(int minValue, int maxValue) const

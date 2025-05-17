@@ -20,11 +20,41 @@ int main() {
     int input;
     do {
         CommandLineInterface::getInstance().startMenu();
-        auto res = CommandLineInterface::getInstance().getUserMenuSelection(0, 7);
+        auto res = CommandLineInterface::getInstance().getUserMenuSelection(0, 6);
 
         if(res.has_value()) {
             input = res.value();
-            std::cout << "Input: " + std::to_string(input) + '\n';
+            switch(input) {
+            case 1: // add book
+                // todo
+                break;
+
+            case 2: // list all books
+                std::cout << '\n';
+                CommandLineInterface::getInstance().listBooks();
+                library.show();
+                CommandLineInterface::getInstance().lineBreak();
+                break;
+                
+            case 3: // search for book
+                // todo
+                break;
+
+            case 4: // borrow book
+                // todo
+                break;
+
+            case 5: // return book
+                // todo
+                break;
+
+            case 6: // save library
+                // todo
+                break;
+            
+            default:
+                break;
+            }
         }
     } while(input != 0); // app main loop
 }
