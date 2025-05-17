@@ -1,7 +1,9 @@
 #pragma once
 
 #include <iostream>
+#include <fstream>
 #include <vector>
+#include <nlohmann/json.hpp>
 
 #include "Library.hpp"
 #include "Book.hpp"
@@ -17,5 +19,11 @@ class Library {
     public:
 
     /* ctors */
-    Library();
+    Library() = default;
+
+    /* utils */
+    void load(std::string);
+    void save();
+
+    void show() const;
 };
