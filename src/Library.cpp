@@ -2,7 +2,12 @@
 
 using json = nlohmann::json;
 
-void Library::load(std::string path) {
+void Library::addBook(Book book) {
+    books.push_back(book);
+}
+
+void Library::load(std::string path)
+{
     std::ifstream ifile(path);
 
     if(!ifile.is_open()) {
@@ -16,7 +21,7 @@ void Library::load(std::string path) {
     }
     catch(const std::exception& e) {
         throw std::runtime_error("[ERROR] Error while loading library data.");
-    }    
+    }
 }
 
 void Library::save(const std::string& path) const {

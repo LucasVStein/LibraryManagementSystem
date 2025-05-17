@@ -26,4 +26,6 @@ class SystemController {
     void setup();
     void mainLoop();
     void exit();
+
+    void addBook();
 };

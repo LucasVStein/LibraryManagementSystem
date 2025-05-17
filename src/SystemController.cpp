@@ -27,7 +27,7 @@ void SystemController::mainLoop() {
             input = res.value();
             switch(input) {
             case 1: // add book
-                // todo
+                addBook();
                 break;
 
             case 2: // list all books
@@ -86,4 +86,57 @@ void SystemController::exit() {
         }
     }
     std::cout << "\n\033[1;32mLibrary Management System shut down.\033[0m\n";
+}
+
+void SystemController::addBook() {
+    std::cout << '\n';
+    CommandLineInterface::getInstance().addBookMenu(1);
+
+    // get book title
+    CommandLineInterface::getInstance().addBookMenu(2);
+    auto title = CommandLineInterface::getInstance().getStringInput();
+    while(!title.has_value()) {
+        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input, please try again.\n";
+        CommandLineInterface::getInstance().addBookMenu(2);
+        title = CommandLineInterface::getInstance().getStringInput();
+    }
+    
+    // get book author
+    CommandLineInterface::getInstance().addBookMenu(3);
+    auto author = CommandLineInterface::getInstance().getStringInput();
+    while(!author.has_value()) {
+        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input, please try again.\n";
+        CommandLineInterface::getInstance().addBookMenu(3);
+        author = CommandLineInterface::getInstance().getStringInput();
+    }
+
+    // get book release year
+    CommandLineInterface::getInstance().addBookMenu(4);
+    auto year = CommandLineInterface::getInstance().getIntInput();
+    while(!year.has_value()) {
+        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input, please try again.\n";
+        CommandLineInterface::getInstance().addBookMenu(4);
+        year = CommandLineInterface::getInstance().getIntInput();
+    }
+
+    // confirm input
+    std::cout << '\n';
+    CommandLineInterface::getInstance().addBookMenu(5);
+    std::cout << "Title: " + title.value() + '\n';
+    std::cout << "Author: " + author.value() + '\n';
+    std::cout << "Year: " + std::to_string(year.value()) + '\n';
+    CommandLineInterface::getInstance().addBookMenu(6);
+
+    CommandLineInterface::getInstance().addBookMenu(7);
+    auto input = CommandLineInterface::getInstance().getUserMenuSelection(1, 2);
+    while(!input.has_value()) {
+        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input, please try again.\n";
+        CommandLineInterface::getInstance().addBookMenu(7);
+        input = CommandLineInterface::getInstance().getUserMenuSelection(1, 2);
+    }
+
+    if(input.value() == 1) {
+        library.addBook({title.value(), author.value(), year.value()});
+        std::cout << "\n\033[1;32mSUCCESS:\033[0m Book added to library.\n";
+    }
 }

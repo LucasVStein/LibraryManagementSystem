@@ -26,7 +26,13 @@ class CommandLineInterface {
     void listBooks() const;
     void lineBreak() const;
     void exitMenu() const;
+    void addBookMenu(unsigned int) const;
 
     /* user input getters */
     std::optional<int> getUserMenuSelection(int, int) const;
+    std::optional<std::string> getStringInput() const;
+    std::optional<unsigned int> getIntInput() const;
+
+    /* utils */
+    bool isWhitespaceOnlyInput(const std::string&) const;
 };

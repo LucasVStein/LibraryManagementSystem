@@ -22,6 +22,7 @@ class Library {
     Library() = default;
 
     /* utils */
+    void addBook(Book);
     void load(std::string);
     void save(const std::string&) const;
 
