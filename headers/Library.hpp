@@ -23,6 +23,7 @@ class Library {
 
     /* utils */
     void addBook(Book);
+    void removeBook(unsigned int);
     void load(std::string);
     void save(const std::string&) const;
     void changeBookAvailability(unsigned int, bool);

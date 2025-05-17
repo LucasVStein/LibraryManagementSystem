@@ -21,7 +21,7 @@ void SystemController::mainLoop() {
     do {
         std::cout << '\n';
         CommandLineInterface::getInstance().startMenu();
-        auto res = CommandLineInterface::getInstance().getUserMenuSelection(0, 6);
+        auto res = CommandLineInterface::getInstance().getUserMenuSelection(0, 7);
 
         if(res.has_value()) {
             input = res.value();
@@ -30,26 +30,30 @@ void SystemController::mainLoop() {
                 addBook();
                 break;
 
-            case 2: // list all books
+            case 2: // remove book
+                removeBook();
+                break;
+
+            case 3: // list all books
                 std::cout << '\n';
                 CommandLineInterface::getInstance().listBooks();
                 library.show();
                 CommandLineInterface::getInstance().lineBreak();
                 break;
 
-            case 3: // search for book
+            case 4: // search for book
                 // todo
                 break;
 
-            case 4: // borrow book
+            case 5: // borrow book
                 borrowBook();
                 break;
 
-            case 5: // return book
+            case 6: // return book
                 returnBook();
                 break;
 
-            case 6: // save library
+            case 7: // save library
                 try {
                     library.save(data_path);
                     std::cout << "\n\033[1;32mSUCCESS:\033[0m Saved data successfully.\n";
@@ -139,6 +143,20 @@ void SystemController::addBook() {
         library.addBook({title.value(), author.value(), year.value()});
         std::cout << "\n\033[1;32mSUCCESS:\033[0m Book added to library.\n";
     }
+}
+
+void SystemController::removeBook() {
+    std::cout << '\n';
+    CommandLineInterface::getInstance().removeBook();
+    auto id = CommandLineInterface::getInstance().getIntInput();
+    while(!id.has_value()) {
+        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input, please try again.\n";
+        std::cout << "Book id: ";
+        id = CommandLineInterface::getInstance().getIntInput();
+    }
+
+    library.removeBook(id.value());
+    std::cout << "\n\033[1;32mSUCCESS:\033[0m Book " + std::to_string(id.value()) + " was removed.\n";
 }
 
 void SystemController::borrowBook() {

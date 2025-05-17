@@ -12,11 +12,12 @@ void CommandLineInterface::startMenu() const {
     std::cout << "==============================\033[0m\n\n";
 
     std::cout << "1. Add a new book\n";
-    std::cout << "2. List all books\n";
-    std::cout << "3. Search for a book (TODO)\n";
-    std::cout << "4. Borrow a book\n";
-    std::cout << "5. Return a book\n";
-    std::cout << "6. Save library to file\n";
+    std::cout << "2. Remove book\n";
+    std::cout << "3. List all books\n";
+    std::cout << "4. Search for a book (TODO)\n";
+    std::cout << "5. Borrow a book\n";
+    std::cout << "6. Return a book\n";
+    std::cout << "7. Save library to file\n";
 
     std::cout << "0. Exit\n\n";
 
@@ -76,6 +77,11 @@ void CommandLineInterface::addBookMenu(unsigned int menuOption) const {
     default:
         break;
     }
+}
+
+void CommandLineInterface::removeBook() const {
+    std::cout << "\033[1;32m======  Remove Book  =======\033[0m\n\n";
+    std::cout << "Book id: ";
 }
 
 void CommandLineInterface::borrowBook() const {

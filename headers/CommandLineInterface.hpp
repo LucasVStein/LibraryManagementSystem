@@ -27,6 +27,7 @@ class CommandLineInterface {
     void lineBreak() const;
     void exitMenu() const;
     void addBookMenu(unsigned int) const;
+    void removeBook() const;
     void borrowBook() const;
     void returnBook() const;
 

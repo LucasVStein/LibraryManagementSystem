@@ -28,6 +28,7 @@ class SystemController {
     void exit();
 
     void addBook();
+    void removeBook();
     void borrowBook();
     void returnBook();
 };

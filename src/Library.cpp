@@ -6,6 +6,14 @@ void Library::addBook(Book book) {
     books.push_back(book);
 }
 
+void Library::removeBook(unsigned int id) {
+    auto deleteCond = [id](const Book& book){
+        return id == book.getId();
+    };
+
+    books.erase(std::remove_if(books.begin(), books.end(), deleteCond), books.end());
+}
+
 void Library::load(std::string path)
 {
     std::ifstream ifile(path);
