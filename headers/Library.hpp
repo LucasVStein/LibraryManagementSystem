@@ -23,7 +23,7 @@ class Library {
 
     /* utils */
     void load(std::string);
-    void save();
+    void save(const std::string&) const;
 
     void show() const;
 };

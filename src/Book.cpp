@@ -33,11 +33,11 @@ void Book::setAuthor(std::string newAuthor) {
 }
 
 void Book::setYear(unsigned int newYear) {
-    year = std::move(newYear);
+    year = newYear;
 }
 
 void Book::setIsAvailable(bool newIsAvailable) {
-    isAvailable = std::move(newIsAvailable);
+    isAvailable = newIsAvailable;
 }
 
 void Book::show() const {

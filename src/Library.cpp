@@ -11,8 +11,10 @@ void Library::load(std::string path) {
     }
 }
 
-void Library::save() {
-    // todo
+void Library::save(const std::string& path) const {
+    json j = books;
+    std::ofstream ofile(path);
+    if(ofile.is_open()) ofile << j.dump(4);
 }
 
 void Library::show() const {
