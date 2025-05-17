@@ -18,7 +18,7 @@ void CommandLineInterface::startMenu() const {
     std::cout << "5. Return a book (TODO)\n";
     std::cout << "6. Save library to file\n";
 
-    std::cout << "0. Exit (TODO)\n\n";
+    std::cout << "0. Exit\n\n";
 
     std::cout << "\033[1;32mChoose an option: \033[0m";
 }
@@ -29,6 +29,14 @@ void CommandLineInterface::listBooks() const {
 
 void CommandLineInterface::lineBreak() const {
     std::cout << "\033[1;32m==============================\033[0m\n";
+}
+
+void CommandLineInterface::exitMenu() const {
+    std::cout << "Do you wish to save before closing?\n";
+    std::cout << "1. Yes\n";
+    std::cout << "2. No\n\n";
+
+    std::cout << "\033[1;32mChoose an option: \033[0m";
 }
 
 std::optional<int> CommandLineInterface::getUserMenuSelection(int minValue, int maxValue) const

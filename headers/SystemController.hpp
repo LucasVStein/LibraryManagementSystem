@@ -25,4 +25,5 @@ class SystemController {
     /* main logic */
     void setup();
     void mainLoop();
+    void exit();
 };

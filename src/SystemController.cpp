@@ -64,4 +64,26 @@ void SystemController::mainLoop() {
             }
         }
     } while(input != 0);
+
+    exit();
+}
+
+void SystemController::exit() {
+    CommandLineInterface::getInstance().lineBreak();
+    std::optional<int> input;
+    do {
+        CommandLineInterface::getInstance().exitMenu();
+        input = CommandLineInterface::getInstance().getUserMenuSelection(1, 2);
+    } while(!input.has_value());
+
+    if(input.value() == 1) {
+        try {
+            library.save(data_path);
+            std::cout << "\n\033[1;32mSUCCESS:\033[0m Saved data successfully.\n";
+        }
+        catch(const std::exception& e) {
+            std::cout << "\n\033[1;31mERROR:\033[0m Failed to save data.\n";
+        }
+    }
+    std::cout << "\n\033[1;32mLibrary Management System shut down.\033[0m\n";
 }

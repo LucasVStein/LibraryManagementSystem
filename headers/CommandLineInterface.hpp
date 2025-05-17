@@ -25,6 +25,7 @@ class CommandLineInterface {
     void startMenu() const;
     void listBooks() const;
     void lineBreak() const;
+    void exitMenu() const;
 
     /* user input getters */
     std::optional<int> getUserMenuSelection(int, int) const;
