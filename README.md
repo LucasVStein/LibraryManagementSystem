@@ -19,6 +19,12 @@ A simple **console-based Library Management System** written in modern C++. It a
   - [🚀 Run the Program](#-run-the-program)
     - [💾 Data Storage](#-data-storage)
     - [🧪 Example JSON Data](#-example-json-data)
+  - [🔍 Code Overview](#-code-overview)
+    - [📘 `Book`](#-book)
+    - [📚 `Library`](#-library)
+    - [🖥️ `CommandLineInterface` (Singleton)](#️-commandlineinterface-singleton)
+    - [🧠 `SystemController`](#-systemcontroller)
+    - [🔁 `main.cpp`](#-maincpp)
 
 ---
 
@@ -134,3 +140,72 @@ The file is created if it doesn’t exist.
   }
 ]
 ```
+
+---
+
+## 🔍 Code Overview
+
+### 📘 `Book`
+
+Represents a single book.
+
+- **Attributes:**  
+  - `title`: Title of the book  
+  - `author`: Author of the book  
+  - `year`: Release year  
+  - `isAvailable`: Availability status
+
+- **Key Functions:**  
+  - `getTitle()`, `getAuthor()`, `getYear()`, `getIsAvailable()` – Getters  
+  - `setTitle(...)`, `setAuthor(...)`, etc. – Setters  
+  - `show()` – Prints book information to the console  
+  - `to_json(...)`, `from_json(...)` – JSON serialization support
+
+---
+
+### 📚 `Library`
+
+Handles the book collection and operations on it.
+
+- **Attributes:**  
+  - `std::vector<Book> books`: A list of all books in the system
+
+- **Key Functions:**  
+  - `addBook(...)` – Adds a new book to the collection  
+  - `removeBookById(...)` – Deletes a book by its ID  
+  - `borrowBook(...)` / `returnBook(...)` – Updates availability status  
+  - `searchBooks()` – Searches books by title, author, or year  
+  - `listBooks()` – Displays all books  
+  - `save(...)` / `load(...)` – Handles persistence with JSON files
+
+---
+
+### 🖥️ `CommandLineInterface` (Singleton)
+
+Implements the CLI.
+
+- **Key Functions:**  
+  - `startMenu()` – Main menu  
+
+---
+
+### 🧠 `SystemController`
+
+Implements the overall system logic. Main system component.
+
+- **Attributes:**  
+  - `library` instance of the library class  
+  - `data_path` path for the JSON
+
+- **Key Functions:**  
+  - `mainLoop()` – Main execution loop  
+  - `setup()` – Does the setup for the system
+
+---
+
+### 🔁 `main.cpp`
+
+Program entry point.
+
+- **Key Function:**  
+  - Initializes `SystemController` and starts the app by calling `mainLoop()`
