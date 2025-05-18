@@ -103,13 +103,11 @@ void CommandLineInterface::searchResult() const {
 }
 
 void CommandLineInterface::borrowBook() const {
-    std::cout << "\033[1;32m======  Borrow Book  =======\033[0m\n\n";
-    std::cout << "Book id: ";
+    std::cout << "\033[1;32m======  Borrow Book  =======\033[0m\n";
 }
 
 void CommandLineInterface::returnBook() const {
-    std::cout << "\033[1;32m======  Return Book  =======\033[0m\n\n";
-    std::cout << "Book id: ";
+    std::cout << "\033[1;32m======  Return Book  =======\033[0m\n";
 }
 
 std::optional<int> CommandLineInterface::getUserMenuSelection(int minValue, int maxValue) const

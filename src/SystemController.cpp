@@ -205,6 +205,9 @@ void SystemController::search() {
 void SystemController::borrowBook() {
     std::cout << '\n';
     CommandLineInterface::getInstance().borrowBook();
+    auto searchResult = library.searchBooks(4, true);
+    library.showConditional(searchResult); // display the available books
+    std::cout << "\nBook id: ";
     auto id = CommandLineInterface::getInstance().getIntInput();
     while(!id.has_value()) {
         std::cout << "\n\033[1;31mERROR:\033[0m Invalid input, please try again.\n";
@@ -213,14 +216,17 @@ void SystemController::borrowBook() {
     }
 
     auto result = library.changeBookAvailability(id.value(), false);
-    if(result.has_value() && result.value()) std::cout << "\n\033[1;32mSUCCESS:\033[0m Book " + std::to_string(id.value()) + " is now unavailable.\n";
-    else if(result.has_value() && !result.value()) std::cout << "\n\033[1;31mERROR:\033[0m Book " + std::to_string(id.value()) + " is already unavailable.\n";
+    if(result.has_value() && result.value()) std::cout << "\n\033[1;32mSUCCESS:\033[0m Book " + std::to_string(id.value()) + " was borrowed.\n";
+    else if(result.has_value() && !result.value()) std::cout << "\n\033[1;31mERROR:\033[0m Book " + std::to_string(id.value()) + " is already borrowed.\n";
     else std::cout << "\n\033[1;31mERROR:\033[0m Book " + std::to_string(id.value()) + " does not exist.\n";
 }
 
 void SystemController::returnBook() {
     std::cout << '\n';
     CommandLineInterface::getInstance().returnBook();
+    auto searchResult = library.searchBooks(4, false);
+    library.showConditional(searchResult); // display the borrowed books
+    std::cout << "\nBook id: ";
     auto id = CommandLineInterface::getInstance().getIntInput();
     while(!id.has_value()) {
         std::cout << "\n\033[1;31mERROR:\033[0m Invalid input, please try again.\n";
@@ -229,7 +235,7 @@ void SystemController::returnBook() {
     }
 
     auto result = library.changeBookAvailability(id.value(), true);
-    if(result.has_value() && result.value()) std::cout << "\n\033[1;32mSUCCESS:\033[0m Book " + std::to_string(id.value()) + " is now available.\n";
+    if(result.has_value() && result.value()) std::cout << "\n\033[1;32mSUCCESS:\033[0m Book " + std::to_string(id.value()) + " was returned.\n";
     else if(result.has_value() && !result.value()) std::cout << "\n\033[1;31mERROR:\033[0m Book " + std::to_string(id.value()) + " is already available.\n";
     else std::cout << "\n\033[1;31mERROR:\033[0m Book " + std::to_string(id.value()) + " does not exist.\n";
 }
