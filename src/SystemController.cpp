@@ -155,8 +155,9 @@ void SystemController::removeBook() {
         id = CommandLineInterface::getInstance().getIntInput();
     }
 
-    library.removeBook(id.value());
-    std::cout << "\n\033[1;32mSUCCESS:\033[0m Book " + std::to_string(id.value()) + " was removed.\n";
+    auto res = library.removeBook(id.value());
+    if(res) std::cout << "\n\033[1;32mSUCCESS:\033[0m Book " + std::to_string(id.value()) + " was removed.\n";
+    else std::cout << "\n\033[1;31mERROR:\033[0m Book " + std::to_string(id.value()) + " not possible to remove.\n";
 }
 
 void SystemController::search() {
@@ -200,8 +201,11 @@ void SystemController::borrowBook() {
         std::cout << "Book id: ";
         id = CommandLineInterface::getInstance().getIntInput();
     }
-    library.changeBookAvailability(id.value(), false);
-    std::cout << "\n\033[1;32mSUCCESS:\033[0m Book " + std::to_string(id.value()) + " is now unavailable.\n";
+
+    auto result = library.changeBookAvailability(id.value(), false);
+    if(result.has_value() && result.value()) std::cout << "\n\033[1;32mSUCCESS:\033[0m Book " + std::to_string(id.value()) + " is now unavailable.\n";
+    else if(result.has_value() && !result.value()) std::cout << "\n\033[1;31mERROR:\033[0m Book " + std::to_string(id.value()) + " is already unavailable.\n";
+    else std::cout << "\n\033[1;31mERROR:\033[0m Book " + std::to_string(id.value()) + " does not exist.\n";
 }
 
 void SystemController::returnBook() {
@@ -213,8 +217,11 @@ void SystemController::returnBook() {
         std::cout << "Book id: ";
         id = CommandLineInterface::getInstance().getIntInput();
     }
-    library.changeBookAvailability(id.value(), true);
-    std::cout << "\n\033[1;32mSUCCESS:\033[0m Book " + std::to_string(id.value()) + " is now available.\n";
+
+    auto result = library.changeBookAvailability(id.value(), true);
+    if(result.has_value() && result.value()) std::cout << "\n\033[1;32mSUCCESS:\033[0m Book " + std::to_string(id.value()) + " is now available.\n";
+    else if(result.has_value() && !result.value()) std::cout << "\n\033[1;31mERROR:\033[0m Book " + std::to_string(id.value()) + " is already available.\n";
+    else std::cout << "\n\033[1;31mERROR:\033[0m Book " + std::to_string(id.value()) + " does not exist.\n";
 }
 
 void SystemController::searchById() {

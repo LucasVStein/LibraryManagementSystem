@@ -6,12 +6,14 @@ void Library::addBook(Book book) {
     books.push_back(book);
 }
 
-void Library::removeBook(unsigned int id) {
+bool Library::removeBook(unsigned int id) {
     auto deleteCond = [id](const Book& book){
         return id == book.getId();
     };
 
+    auto oldSize = books.size();
     books.erase(std::remove_if(books.begin(), books.end(), deleteCond), books.end());
+    return oldSize != books.size();
 }
 
 void Library::load(std::string path)
@@ -48,13 +50,15 @@ void Library::save(const std::string& path) const {
     }
 }
 
-void Library::changeBookAvailability(unsigned int id, bool newIsAvailable) {
+std::optional<bool> Library::changeBookAvailability(unsigned int id, bool newIsAvailable) {
     for(auto& book : books) {
         if(book.getId() == id) {
+            if(book.getIsAvailable() == newIsAvailable) return false;
             book.setIsAvailable(newIsAvailable);
-            break;
+            return true;
         }
     }
+    return {};
 }
 
 void Library::show() const {

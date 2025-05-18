@@ -24,10 +24,10 @@ class Library {
 
     /* utils */
     void addBook(Book);
-    void removeBook(unsigned int);
+    bool removeBook(unsigned int);
     void load(std::string);
     void save(const std::string&) const;
-    void changeBookAvailability(unsigned int, bool);
+    std::optional<bool> changeBookAvailability(unsigned int, bool);
 
     void show() const;
     void showConditional(std::vector<unsigned int>) const;
