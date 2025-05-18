@@ -41,19 +41,27 @@ void SystemController::mainLoop() {
                 CommandLineInterface::getInstance().lineBreak();
                 break;
 
-            case 4: // search for book
+            case 4: // list available books
+                listBooksByAvailability(true);
+                break;
+
+            case 5: // list unavailable books
+                listBooksByAvailability(false);
+                break;
+
+            case 6: // search for book
                 search();
                 break;
 
-            case 5: // borrow book
+            case 7: // borrow book
                 borrowBook();
                 break;
 
-            case 6: // return book
+            case 8: // return book
                 returnBook();
                 break;
 
-            case 7: // save library
+            case 9: // save library
                 try {
                     library.save(data_path);
                     std::cout << "\n\033[1;32mSUCCESS:\033[0m Saved data successfully.\n";
@@ -224,6 +232,14 @@ void SystemController::returnBook() {
     if(result.has_value() && result.value()) std::cout << "\n\033[1;32mSUCCESS:\033[0m Book " + std::to_string(id.value()) + " is now available.\n";
     else if(result.has_value() && !result.value()) std::cout << "\n\033[1;31mERROR:\033[0m Book " + std::to_string(id.value()) + " is already available.\n";
     else std::cout << "\n\033[1;31mERROR:\033[0m Book " + std::to_string(id.value()) + " does not exist.\n";
+}
+
+void SystemController::listBooksByAvailability(bool availability) const {
+    std::cout << '\n';
+    CommandLineInterface::getInstance().listBooks();
+    auto searchResult = library.searchBooks(4, availability);
+    library.showConditional(searchResult);
+    CommandLineInterface::getInstance().lineBreak();
 }
 
 void SystemController::searchById() {

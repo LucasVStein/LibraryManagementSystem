@@ -14,10 +14,12 @@ void CommandLineInterface::startMenu() const {
     std::cout << "1. Add a new book\n";
     std::cout << "2. Remove book\n";
     std::cout << "3. List all books\n";
-    std::cout << "4. Search for a book\n";
-    std::cout << "5. Borrow a book\n";
-    std::cout << "6. Return a book\n";
-    std::cout << "7. Save\n";
+    std::cout << "4. List available books\n";
+    std::cout << "5. List unavailable (borrowed) books\n";
+    std::cout << "6. Search for a book\n";
+    std::cout << "7. Borrow a book\n";
+    std::cout << "8. Return a book\n";
+    std::cout << "9. Save\n";
 
     std::cout << "0. Exit\n\n";
 

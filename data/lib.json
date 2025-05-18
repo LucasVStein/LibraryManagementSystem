@@ -1,32 +1,32 @@
 [
-  {
-    "title": "The Hobbit",
-    "author": "J.R.R. Tolkien",
-    "year": 1937,
-    "available": true
-  },
-  {
-    "title": "1984",
-    "author": "George Orwell",
-    "year": 1949,
-    "available": false
-  },
-  {
-    "title": "To Kill a Mockingbird",
-    "author": "Harper Lee",
-    "year": 1960,
-    "available": true
-  },
-  {
-    "title": "Brave New World",
-    "author": "Aldous Huxley",
-    "year": 1932,
-    "available": true
-  },
-  {
-    "title": "Fahrenheit 451",
-    "author": "Ray Bradbury",
-    "year": 1953,
-    "available": false
-  }
+    {
+        "author": "J.R.R. Tolkien",
+        "available": false,
+        "title": "The Hobbit",
+        "year": 1937
+    },
+    {
+        "author": "George Orwell",
+        "available": false,
+        "title": "1984",
+        "year": 1949
+    },
+    {
+        "author": "Harper Lee",
+        "available": true,
+        "title": "To Kill a Mockingbird",
+        "year": 1960
+    },
+    {
+        "author": "Aldous Huxley",
+        "available": true,
+        "title": "Brave New World",
+        "year": 1932
+    },
+    {
+        "author": "Ray Bradbury",
+        "available": false,
+        "title": "Fahrenheit 451",
+        "year": 1953
+    }
 ]

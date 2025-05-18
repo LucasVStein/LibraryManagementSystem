@@ -33,6 +33,8 @@ class SystemController {
     void borrowBook();
     void returnBook();
 
+    void listBooksByAvailability(bool) const;
+
     /* utils */
     void searchById();
     void searchByTitle();

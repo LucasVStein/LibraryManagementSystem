@@ -75,10 +75,10 @@ void Library::showConditional(std::vector<unsigned int> indexes) const {
     }
 }
 
-std::vector<unsigned int> Library::searchBooks(unsigned int criteria, std::variant<unsigned int, std::string> searchValue) {
+std::vector<unsigned int> Library::searchBooks(unsigned int criteria, std::variant<unsigned int, std::string, bool> searchValue) const {
     std::vector<unsigned int> searchResult;
 
-    /* criteria: 0->id, 1->title, 2->author, 3->year */
+    /* criteria: 0->id, 1->title, 2->author, 3->year, 4->isAvailable */
     switch(criteria) {
     case 0:
         for(auto ite = 0; ite < books.size(); ite++) {
@@ -110,6 +110,14 @@ std::vector<unsigned int> Library::searchBooks(unsigned int criteria, std::varia
     case 3:
         for(auto ite = 0; ite < books.size(); ite++) {
             if(std::get<unsigned int>(searchValue) == books[ite].getYear()) {
+                searchResult.push_back(ite);
+            }
+        }
+        break;
+
+    case 4:
+        for(auto ite = 0; ite < books.size(); ite++) {
+            if(std::get<bool>(searchValue) == books[ite].getIsAvailable()) {
                 searchResult.push_back(ite);
             }
         }
