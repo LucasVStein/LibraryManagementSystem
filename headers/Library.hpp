@@ -33,4 +33,6 @@ class Library {
     void showConditional(std::vector<unsigned int>) const;
 
     std::vector<unsigned int> searchBooks(unsigned int, std::variant<unsigned int, std::string, bool>) const;
+
+    std::string toLowerCase(std::string str) const;
 };

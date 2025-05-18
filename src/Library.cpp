@@ -91,8 +91,9 @@ std::vector<unsigned int> Library::searchBooks(unsigned int criteria, std::varia
 
     case 1:
         for(auto ite = 0; ite < books.size(); ite++) {
-            auto searchTitle = std::get<std::string>(searchValue);
-            if(books[ite].getTitle().find(searchTitle) != std::string::npos) {
+            auto bookTitle = toLowerCase(books[ite].getTitle());
+            auto searchTitle = toLowerCase(std::get<std::string>(searchValue)); // convert to lowercase to make the search case insensitive
+            if(bookTitle.find(searchTitle) != std::string::npos) {
                 searchResult.push_back(ite);
             }
         }
@@ -100,8 +101,9 @@ std::vector<unsigned int> Library::searchBooks(unsigned int criteria, std::varia
 
     case 2:
         for(auto ite = 0; ite < books.size(); ite++) {
-            auto searchAuthor = std::get<std::string>(searchValue);
-            if(books[ite].getAuthor().find(searchAuthor) != std::string::npos) {
+            auto bookAuthor = toLowerCase(books[ite].getAuthor());
+            auto searchAuthor = toLowerCase(std::get<std::string>(searchValue)); // convert to lowercase to make the search case insensitive
+            if(bookAuthor.find(searchAuthor) != std::string::npos) {
                 searchResult.push_back(ite);
             }
         }
@@ -128,4 +130,9 @@ std::vector<unsigned int> Library::searchBooks(unsigned int criteria, std::varia
     }
 
     return searchResult;
+}
+
+std::string Library::toLowerCase(std::string str) const {
+    std::transform(str.begin(), str.end(), str.begin(), [](unsigned char c){return std::tolower(c);});
+    return str;
 }
