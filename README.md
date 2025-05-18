@@ -7,6 +7,21 @@ A simple **console-based Library Management System** written in modern C++. It a
 
 ---
 
+## 📑 Table of Contents
+
+- [📚 Library Management System](#-library-management-system)
+  - [📑 Table of Contents](#-table-of-contents)
+  - [✅ Features](#-features)
+  - [📁 Project Structure](#-project-structure)
+  - [⚙️ Build Instructions](#️-build-instructions)
+    - [📦 Requirements](#-requirements)
+    - [🛠️ Build steps](#️-build-steps)
+  - [🚀 Run the Program](#-run-the-program)
+    - [💾 Data Storage](#-data-storage)
+    - [🧪 Example JSON Data](#-example-json-data)
+
+---
+
 ## ✅ Features
 
 - Add new books to the collection
@@ -22,24 +37,26 @@ A simple **console-based Library Management System** written in modern C++. It a
 
 ## 📁 Project Structure
 
+```text
 LibraryManagementSystem/
 │
-├── headers/ # All header files
-│ ├── Book.hpp
-│ ├── Library.hpp
-│ ├── CommandLineInterface.hpp
-│ └── SystemController.hpp
+├── headers/                # All header files
+│   ├── Book.hpp
+│   ├── Library.hpp
+│   ├── CommandLineInterface.hpp
+│   └── SystemController.hpp
 │
-├── src/ # All implementation files
-│ ├── Book.cpp
-│ ├── Library.cpp
-│ ├── CommandLineInterface.cpp
-│ ├── SystemController.cpp
-│ └── main.cpp
+├── src/                    # All implementation files
+│   ├── Book.cpp
+│   ├── Library.cpp
+│   ├── CommandLineInterface.cpp
+│   ├── SystemController.cpp
+│   └── main.cpp
 │
-├── CMakeLists.txt # Build configuration
-├── README.md # Project documentation
+├── CMakeLists.txt          # Build configuration
+├── README.md               # Project documentation
 └── .gitignore
+```
 
 ---
 
