@@ -17,7 +17,7 @@ void SystemController::setup()
 }
 
 void SystemController::mainLoop() {
-    int input;
+    int input = -1;
     do {
         std::cout << '\n';
         CommandLineInterface::getInstance().startMenu();
@@ -67,6 +67,7 @@ void SystemController::mainLoop() {
                 break;
             }
         }
+        else std::cout << "\n\033[1;31mERROR:\033[0m Invalid input.\n";
     } while(input != 0);
 
     exit();
@@ -78,6 +79,7 @@ void SystemController::exit() {
     do {
         CommandLineInterface::getInstance().exitMenu();
         input = CommandLineInterface::getInstance().getUserMenuSelection(1, 2);
+        if(!input.has_value()) std::cout << "\n\033[1;31mERROR:\033[0m Invalid input.\n";
     } while(!input.has_value());
 
     if(input.value() == 1) {
@@ -118,7 +120,7 @@ void SystemController::addBook() {
     CommandLineInterface::getInstance().addBookMenu(4);
     auto year = CommandLineInterface::getInstance().getIntInput();
     while(!year.has_value()) {
-        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input, please try again.\n";
+        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input.\n";
         CommandLineInterface::getInstance().addBookMenu(4);
         year = CommandLineInterface::getInstance().getIntInput();
     }
@@ -134,7 +136,7 @@ void SystemController::addBook() {
     CommandLineInterface::getInstance().addBookMenu(7);
     auto input = CommandLineInterface::getInstance().getUserMenuSelection(1, 2);
     while(!input.has_value()) {
-        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input, please try again.\n";
+        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input.\n";
         CommandLineInterface::getInstance().addBookMenu(7);
         input = CommandLineInterface::getInstance().getUserMenuSelection(1, 2);
     }
@@ -150,7 +152,7 @@ void SystemController::removeBook() {
     CommandLineInterface::getInstance().removeBook();
     auto id = CommandLineInterface::getInstance().getIntInput();
     while(!id.has_value()) {
-        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input, please try again.\n";
+        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input.\n";
         std::cout << "Book id: ";
         id = CommandLineInterface::getInstance().getIntInput();
     }
@@ -165,9 +167,9 @@ void SystemController::search() {
     CommandLineInterface::getInstance().searchMenu(true);
     auto input = CommandLineInterface::getInstance().getUserMenuSelection(1, 4);
     while(!input.has_value()) {
-        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input, please try again.\n\n";
+        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input.\n\n";
         CommandLineInterface::getInstance().searchMenu(false);
-        auto input = CommandLineInterface::getInstance().getUserMenuSelection(1, 4);
+        input = CommandLineInterface::getInstance().getUserMenuSelection(1, 4);
     }
 
     switch(input.value()) {

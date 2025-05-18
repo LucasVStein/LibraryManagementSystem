@@ -17,7 +17,7 @@ void CommandLineInterface::startMenu() const {
     std::cout << "4. Search for a book\n";
     std::cout << "5. Borrow a book\n";
     std::cout << "6. Return a book\n";
-    std::cout << "7. Save library to file\n";
+    std::cout << "7. Save\n";
 
     std::cout << "0. Exit\n\n";
 
@@ -119,7 +119,6 @@ std::optional<int> CommandLineInterface::getUserMenuSelection(int minValue, int 
     if(std::cin.fail() || input < minValue || input > maxValue) {
         std::cin.clear();
         std::cin.ignore(1000, '\n');
-        std::cout << "\033[1;31mERROR:\033[0m Invalid input.\n";
         return {};
     }
 
