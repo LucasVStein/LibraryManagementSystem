@@ -1,14 +1,32 @@
 [
-    {
-        "author": "George Orwell",
-        "available": false,
-        "title": "1984",
-        "year": 1949
-    },
-    {
-        "author": "Andrew Hunt and David Thomas",
-        "available": true,
-        "title": "The Pragmatic Programmer",
-        "year": 1999
-    }
+  {
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "year": 1937,
+    "available": true
+  },
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "year": 1949,
+    "available": false
+  },
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "year": 1960,
+    "available": true
+  },
+  {
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "year": 1932,
+    "available": true
+  },
+  {
+    "title": "Fahrenheit 451",
+    "author": "Ray Bradbury",
+    "year": 1953,
+    "available": false
+  }
 ]

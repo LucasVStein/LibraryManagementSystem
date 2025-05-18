@@ -29,6 +29,13 @@ class SystemController {
 
     void addBook();
     void removeBook();
+    void search();
     void borrowBook();
     void returnBook();
+
+    /* utils */
+    void searchById();
+    void searchByTitle();
+    void searchByAuthor();
+    void searchByYear();
 };

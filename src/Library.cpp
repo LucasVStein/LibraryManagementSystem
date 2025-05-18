@@ -63,3 +63,57 @@ void Library::show() const {
         b.show();
     }
 }
+
+void Library::showConditional(std::vector<unsigned int> indexes) const {
+    if(books.empty() || indexes.empty()) std::cout << "Empty\n";
+    for(auto index : indexes) {
+        if(index < books.size()) books[index].show();
+    }
+}
+
+std::vector<unsigned int> Library::searchBooks(unsigned int criteria, std::variant<unsigned int, std::string> searchValue) {
+    std::vector<unsigned int> searchResult;
+
+    /* criteria: 0->id, 1->title, 2->author, 3->year */
+    switch(criteria) {
+    case 0:
+        for(auto ite = 0; ite < books.size(); ite++) {
+            if(std::get<unsigned int>(searchValue) == books[ite].getId()) {
+                searchResult.push_back(ite);
+                break;
+            }
+        }
+        break;
+
+    case 1:
+        for(auto ite = 0; ite < books.size(); ite++) {
+            auto searchTitle = std::get<std::string>(searchValue);
+            if(books[ite].getTitle().find(searchTitle) != std::string::npos) {
+                searchResult.push_back(ite);
+            }
+        }
+        break;
+
+    case 2:
+        for(auto ite = 0; ite < books.size(); ite++) {
+            auto searchAuthor = std::get<std::string>(searchValue);
+            if(books[ite].getAuthor().find(searchAuthor) != std::string::npos) {
+                searchResult.push_back(ite);
+            }
+        }
+        break;
+
+    case 3:
+        for(auto ite = 0; ite < books.size(); ite++) {
+            if(std::get<unsigned int>(searchValue) == books[ite].getYear()) {
+                searchResult.push_back(ite);
+            }
+        }
+        break;
+    
+    default:
+        break;
+    }
+
+    return searchResult;
+}

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <variant>
 #include <nlohmann/json.hpp>
 
 #include "Library.hpp"
@@ -29,4 +30,7 @@ class Library {
     void changeBookAvailability(unsigned int, bool);
 
     void show() const;
+    void showConditional(std::vector<unsigned int>) const;
+
+    std::vector<unsigned int> searchBooks(unsigned int, std::variant<unsigned int, std::string>);
 };

@@ -28,6 +28,8 @@ class CommandLineInterface {
     void exitMenu() const;
     void addBookMenu(unsigned int) const;
     void removeBook() const;
+    void searchMenu(bool) const;
+    void searchResult() const;
     void borrowBook() const;
     void returnBook() const;
 

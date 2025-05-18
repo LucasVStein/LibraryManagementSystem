@@ -42,7 +42,7 @@ void SystemController::mainLoop() {
                 break;
 
             case 4: // search for book
-                // todo
+                search();
                 break;
 
             case 5: // borrow book
@@ -159,6 +159,38 @@ void SystemController::removeBook() {
     std::cout << "\n\033[1;32mSUCCESS:\033[0m Book " + std::to_string(id.value()) + " was removed.\n";
 }
 
+void SystemController::search() {
+    std::cout << '\n';
+    CommandLineInterface::getInstance().searchMenu(true);
+    auto input = CommandLineInterface::getInstance().getUserMenuSelection(1, 4);
+    while(!input.has_value()) {
+        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input, please try again.\n\n";
+        CommandLineInterface::getInstance().searchMenu(false);
+        auto input = CommandLineInterface::getInstance().getUserMenuSelection(1, 4);
+    }
+
+    switch(input.value()) {
+    case 1: // id
+        searchById();
+        break;
+
+    case 2: // title
+        searchByTitle();
+        break;
+
+    case 3: // author
+        searchByAuthor();
+        break;
+
+    case 4: // year
+        searchByYear();
+        break;
+    
+    default:
+        break;
+    }
+}
+
 void SystemController::borrowBook() {
     std::cout << '\n';
     CommandLineInterface::getInstance().borrowBook();
@@ -183,4 +215,76 @@ void SystemController::returnBook() {
     }
     library.changeBookAvailability(id.value(), true);
     std::cout << "\n\033[1;32mSUCCESS:\033[0m Book " + std::to_string(id.value()) + " is now available.\n";
+}
+
+void SystemController::searchById() {
+    std::cout << "Book id: ";
+    auto id = CommandLineInterface::getInstance().getIntInput();
+    while(!id.has_value()) {
+        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input, please try again.\n";
+        std::cout << "Book id: ";
+        id = CommandLineInterface::getInstance().getIntInput();
+    }
+
+    // get results
+    auto results = library.searchBooks(0, id.value());
+
+    // output results
+    std::cout << '\n';
+    CommandLineInterface::getInstance().searchResult();
+    library.showConditional(results);
+}
+
+void SystemController::searchByTitle() {
+    std::cout << "Title: ";
+    auto title = CommandLineInterface::getInstance().getStringInput();
+    while(!title.has_value()) {
+        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input, please try again.\n";
+        std::cout << "Title: ";
+        title = CommandLineInterface::getInstance().getStringInput();
+    }
+
+    // get results
+    auto results = library.searchBooks(1, title.value());
+
+    // output results
+    std::cout << '\n';
+    CommandLineInterface::getInstance().searchResult();
+    library.showConditional(results);
+}
+
+void SystemController::searchByAuthor() {
+    std::cout << "Author: ";
+    auto author = CommandLineInterface::getInstance().getStringInput();
+    while(!author.has_value()) {
+        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input, please try again.\n";
+        std::cout << "Author: ";
+        author = CommandLineInterface::getInstance().getStringInput();
+    }
+
+    // get results
+    auto results = library.searchBooks(2, author.value());
+
+    // output results
+    std::cout << '\n';
+    CommandLineInterface::getInstance().searchResult();
+    library.showConditional(results);
+}
+
+void SystemController::searchByYear() {
+    std::cout << "Year: ";
+    auto year = CommandLineInterface::getInstance().getIntInput();
+    while(!year.has_value()) {
+        std::cout << "\n\033[1;31mERROR:\033[0m Invalid input, please try again.\n";
+        std::cout << "Year: ";
+        year = CommandLineInterface::getInstance().getIntInput();
+    }
+
+    // get results
+    auto results = library.searchBooks(3, year.value());
+
+    // output results
+    std::cout << '\n';
+    CommandLineInterface::getInstance().searchResult();
+    library.showConditional(results);
 }
